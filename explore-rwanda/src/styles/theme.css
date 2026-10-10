@@ -1,0 +1,151 @@
+/* ============================================================================
+   Theme: dark/light palettes + refined buttons + theme toggle.
+   Only colors/visuals change. Structure, layout and all wording are untouched.
+   Light mode keeps the existing warm ivory look; dark mode is a deep, calm
+   green-charcoal night with gold accents (high contrast, AA text).
+   ============================================================================ */
+
+/* ---------- Dark palette (overrides the light variables) ---------- */
+:root[data-theme="dark"] {
+  --color-ivory: #0e1512;
+  --color-ivory-deep: #16201b;
+  --color-surface: #17211c;
+  --color-surface-alt: #1e2a24;
+
+  --color-charcoal: #eef2ef;
+  --color-muted: #a7b4ac;
+
+  --color-border: #2c3a33;
+  --color-border-strong: #3c4d44;
+
+  /* Brand accents stay recognizable but tuned for dark backgrounds. */
+  --color-forest: #3f9d7a;
+  --color-forest-deep: #0b1f18;
+  --color-forest-soft: #22453a;
+
+  --color-gold: #e6b53c;
+  --color-gold-dark: #f0c964;
+  --color-gold-soft: #4a3c1a;
+  --color-gold-glow: #f3d382;
+
+  --color-lake: #4fc0c0;
+  --color-lake-deep: #8fe0e0;
+  --color-lake-soft: #173c3c;
+
+  --color-earth: #c9a06a;
+  --color-earth-soft: #3d3324;
+
+  --color-danger: #ff8a86;
+  --color-danger-soft: #42211f;
+  --color-ok: #55c98a;
+
+  /* Adaptive link/text accents for dark surfaces. */
+  --color-link: var(--color-lake-deep);
+  --color-link-hover: var(--color-gold-glow);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  --focus: 0 0 0 3px rgba(79, 192, 192, 0.45);
+}
+
+/* ---------- Theme toggle button ---------- */
+.theme-toggle {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-forest);
+  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
+}
+.theme-toggle:hover {
+  color: var(--color-gold-dark);
+  border-color: var(--color-gold);
+  transform: translateY(-1px);
+}
+:root[data-theme="dark"] .theme-toggle { color: var(--color-gold-glow); }
+
+/* Inside the dark footer / inverse bars the toggle must read on dark too. */
+.footer .theme-toggle { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.35); color: var(--color-gold-glow); }
+
+/* In the mobile "More" sheet the toggle sits in a column — keep it compact & left-aligned. */
+.more-block .theme-toggle { justify-self: start; min-width: 44px; }
+
+/* ---------- Dark-mode refinements ---------- */
+/* Neutralize the light-only "polish" gradients/glows baked into components.css
+   and pages.css so dark surfaces stay even and readable. */
+:root[data-theme="dark"] body {
+  background: radial-gradient(circle at 88% -8%, rgba(63, 157, 122, 0.16), rgba(63, 157, 122, 0) 34%),
+    radial-gradient(circle at -12% 22%, rgba(79, 192, 192, 0.12), rgba(79, 192, 192, 0) 36%),
+    var(--color-ivory);
+}
+:root[data-theme="dark"] .navbar { background: rgba(16, 23, 20, 0.9); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+:root[data-theme="dark"] .bottomnav { background: rgba(16, 23, 20, 0.96); }
+:root[data-theme="dark"] .card { background: var(--color-surface); box-shadow: var(--shadow-sm); }
+:root[data-theme="dark"] .card__media { background: var(--color-ivory-deep); }
+:root[data-theme="dark"] .trust-grid__item,
+:root[data-theme="dark"] .todo li,
+:root[data-theme="dark"] .principles li { background: var(--color-surface); box-shadow: none; }
+:root[data-theme="dark"] .facts { background: var(--color-surface-alt); }
+:root[data-theme="dark"] .join { background: var(--color-surface-alt); }
+:root[data-theme="dark"] .estimate__tiles > li { background: var(--color-ivory-deep); color: var(--color-charcoal); }
+:root[data-theme="dark"] .chip { background: var(--color-surface-alt); }
+:root[data-theme="dark"] .chip:hover { background: var(--color-forest-soft); }
+:root[data-theme="dark"] .chip--on { background: var(--color-forest); border-color: var(--color-forest); color: #04120d; }
+:root[data-theme="dark"] .detail-hero { background: var(--color-ivory-deep); }
+:root[data-theme="dark"] .skeleton { background: linear-gradient(90deg, #1c2823 25%, #22302a 50%, #1c2823 75%); background-size: 200% 100%; }
+
+/* Gold-on-dark "info" chips, trust labels and notices get proper dark tinted
+   backgrounds with light text so they stay readable (the light theme keeps its
+   own cream tints defined in components.css). */
+:root[data-theme="dark"] .badge--estimated,
+:root[data-theme="dark"] .badge--community,
+:root[data-theme="dark"] .badge--approved,
+:root[data-theme="dark"] .badge--status-almost_full {
+  background: #e6b53c;
+  color: #1a1305;
+  border-color: #f0c964;
+}
+:root[data-theme="dark"] .badge--verified,
+:root[data-theme="dark"] .badge--status-open {
+  background: var(--color-forest-soft);
+  color: #86e0b4;
+  border-color: rgba(63, 157, 122, 0.45);
+}
+:root[data-theme="dark"] .badge--sample {
+  background: var(--color-earth-soft);
+  color: var(--color-earth);
+}
+:root[data-theme="dark"] .badge--status-full,
+:root[data-theme="dark"] .badge--status-closed { background: var(--color-ivory-deep); color: var(--color-charcoal); }
+
+/* Trust labels ("Estimated", "Verified", "Community") — light text on dark tints. */
+:root[data-theme="dark"] .trust--estimated { background: #e6b53c; color: #1a1305; }
+:root[data-theme="dark"] .trust--verified { background: var(--color-forest-soft); color: #86e0b4; }
+:root[data-theme="dark"] .trust--community { background: var(--color-earth-soft); color: var(--color-earth); }
+
+/* ---------- Refined button design (both themes) ---------- */
+.btn { transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.12s; }
+.btn:hover:not(:disabled) { transform: translateY(-1px); }
+.btn:active:not(:disabled) { transform: translateY(0); }
+.btn:focus-visible, .icon-btn:focus-visible, .theme-toggle:focus-visible { outline: none; box-shadow: var(--focus); }
+
+.btn--primary {
+  background: linear-gradient(180deg, var(--color-gold-glow), var(--color-gold) 62%, #cf9d1c);
+  border-color: rgba(154, 116, 19, 0.45);
+  box-shadow: 0 6px 16px rgba(212, 160, 23, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+.btn--primary:hover { box-shadow: 0 10px 22px rgba(212, 160, 23, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.55); }
+:root[data-theme="dark"] .btn--primary { background: linear-gradient(180deg, var(--color-gold), #c4921f); color: #1a1305; }
+:root[data-theme="dark"] .btn--primary:hover { background: var(--color-gold-glow); color: #1a1305; }
+
+.btn--dark { background: linear-gradient(180deg, #1d4d3a, #0f2c22); box-shadow: 0 6px 14px rgba(6, 26, 18, 0.4); }
+.btn--dark:hover { background: #163023; }
+
+.btn--secondary { border-width: 2px; }
+.btn--secondary:hover { background: var(--color-forest-soft); }
+
+.btn--ghost:hover, .btn--ghost:focus-visible { background: var(--color-forest-soft); }
+
+/* Smooth color change when switching themes. */
+html.theme-anim, html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+

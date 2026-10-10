@@ -19,7 +19,7 @@ export const en = {
   "nav.about": "About",
   "nav.becomeOrganizer": "Become an Organizer",
   "nav.account": "Account",
-  "nav.createAccount": "Create account",
+  "nav.createAccount": "SignUp",
   "nav.signOut": "Sign out",
   "nav.hello": "Hi, {name}",
   "lang.label": "Language",

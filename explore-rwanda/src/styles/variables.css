@@ -1,18 +1,26 @@
 :root {
-  /* Brand: classic gold (primary accent), warm ivory, deep charcoal, forest green, earth tones. */
-  --color-gold: #b8892b;
-  --color-gold-dark: #8f6a1c;
-  --color-gold-soft: #f3e6c4;
-  --color-ivory: #fbf7ee;
-  --color-ivory-deep: #f3ecdc;
+  /* Brand: Rwanda-inspired — deep forest, warm gold, lake teal, volcano slate, savanna glow, ivory paper. */
+  --color-gold: #d4a017;
+  --color-gold-dark: #9a7413;
+  --color-gold-soft: #fdf0c9;
+  --color-gold-glow: #ffdf7e;
+  --color-ivory: #fffbf0;
+  --color-ivory-deep: #f6ecd6;
   --color-surface: #ffffff;
-  --color-charcoal: #26241f;
+  --color-charcoal: #211e18;
   --color-muted: #5f5a4f;
-  --color-border: #e2d9c3;
-  --color-forest: #1f3d2e;
-  --color-forest-soft: #e4eee7;
-  --color-earth: #8a5a3b;
-  --color-earth-soft: #f1e2d6;
+  --color-border: #e6d5b3;
+  --color-forest: #14382a;
+  --color-forest-deep: #0d271e;
+  --color-forest-soft: #dff0e3;
+  --color-lake: #0e7c7b;
+  --color-lake-soft: #d9f0ef;
+  --color-lake-deep: #0a5c5b;
+  --color-earth: #9a5b33;
+  --color-earth-soft: #f7e3cf;
+  --color-sunset: #e4692e;
+  --color-sunset-soft: #fde6d6;
+  --color-volcano: #3c4a55;
   --color-danger: #a3342b;
   --color-danger-soft: #f8e4e1;
   --color-ok: #2f6b45;
@@ -40,6 +48,10 @@
   --container: 1160px;
   --gutter: 1rem;
   --touch: 44px;
+
+  /* Text/link tokens so link color can flip for dark mode without touching every rule. */
+  --color-link: var(--color-forest);
+  --color-link-hover: var(--color-gold-dark);
 }
 
 @media (min-width: 768px) {

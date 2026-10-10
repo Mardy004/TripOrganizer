@@ -3,6 +3,7 @@ import { useI18n } from "../../context/I18nContext";
 import type { TranslationKey } from "../../translations";
 import { Logo } from "../common/Logo";
 import { LanguageSwitcher } from "../common/LanguageSwitcher";
+import { ThemeToggle } from "../common/ThemeToggle";
 import { Button } from "../common/Button";
 import { AccountMenu } from "./AccountMenu";
 
@@ -29,6 +30,7 @@ export function Navbar() {
           ))}
         </nav>
         <div className="navbar__actions">
+          <ThemeToggle />
           <LanguageSwitcher />
           <div className="navbar__desktop-only">
             <Button to="/organize" variant="ghost">

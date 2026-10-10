@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useI18n } from "../../context/I18nContext";
 import type { Trip } from "../../types";
 import { formatDate, formatMoney } from "../../utils/format";
+import { photoForDestination } from "../../data/photos";
 import { LandscapeImage } from "../common/LandscapeImage";
 import { RatingDisplay } from "../common/RatingDisplay";
 import { SaveButton } from "../common/SaveButton";
@@ -18,7 +19,7 @@ export function TripCard({ trip: tr }: { trip: Trip }) {
   return (
     <article className={`card trip-card ${inactive ? "trip-card--inactive" : ""}`}>
       <div className="card__media">
-        <LandscapeImage tone={tr.imageTone} alt={`${tr.destinationName}`} />
+        <LandscapeImage tone={tr.imageTone} src={photoForDestination(tr.destinationId)} alt={`${tr.destinationName}`} />
         <span className="card__region">{t(`activity.${tr.activity}`)}</span>
         <div className="card__badges">
           <StatusBadge status={tr.status} />

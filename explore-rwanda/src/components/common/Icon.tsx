@@ -20,6 +20,7 @@ const paths = {
   building: "M5 21 V5 H15 V21 M15 10 H19 V21 M3 21 H21 M8 9 H12 M8 13 H12 M8 17 H12",
   info: "M3 12 a9 9 0 1 0 18 0 a9 9 0 1 0 -18 0 M12 11 V16 M12 8 h.01",
   arrow: "M5 12 H19 M13 6 L19 12 L13 18",
+  moon: "M20 14.5 A8.5 8.5 0 0 1 9.5 4 A7 7 0 1 0 20 14.5 Z",
 } as const;
 
 export type IconName = keyof typeof paths;

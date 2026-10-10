@@ -7,6 +7,7 @@ import { Drawer } from "../common/Modal";
 import { Icon } from "../common/Icon";
 import type { IconName } from "../common/Icon";
 import { LanguageSwitcher } from "../common/LanguageSwitcher";
+import { ThemeToggle } from "../common/ThemeToggle";
 import type { TranslationKey } from "../../translations";
 
 const tabs: { to: string; key: TranslationKey; icon: IconName; end?: boolean }[] = [
@@ -62,6 +63,7 @@ export function BottomNav() {
         <div className="more-block">
           <p className="t-label">{t("lang.label")}</p>
           <LanguageSwitcher />
+          <ThemeToggle />
         </div>
         <div className="more-block">
           <p className="t-label">{t("nav.account")}</p>

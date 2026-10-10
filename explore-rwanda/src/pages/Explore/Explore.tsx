@@ -17,6 +17,7 @@ import type { Filters } from "../../utils/filters";
 import { formatMoney } from "../../utils/format";
 import { exampleSearches, isInterpreted } from "../../utils/search";
 import type { ActivityId, DurationId, RegionId } from "../../types";
+import { explorePhoto } from "../../data/photos";
 
 /** Filters are seeded from the URL so links such as /explore?activity=hiking work. */
 function initial(params: URLSearchParams): Filters {
@@ -63,8 +64,10 @@ export default function Explore() {
     t(n === 1 ? (`${key}.one` as const) : key, { n });
 
   return (
-    <div className="container section">
-      <SectionHeading as="h1" eyebrow={t("explore.eyebrow")} title={t("explore.title")} description={t("explore.subtitle")} />
+    <div className="explore page-photo" style={{ backgroundImage: `url(${explorePhoto})` }}>
+      <div className="page-photo__scrim" aria-hidden="true" />
+      <div className="container section page-photo__inner">
+        <SectionHeading as="h1" eyebrow={t("explore.eyebrow")} title={t("explore.title")} description={t("explore.subtitle")} />
 
       <div className="explore__bar">
         <SearchBar
@@ -166,6 +169,7 @@ export default function Explore() {
           </Button>
         )}
       </Drawer>
+      </div>
     </div>
   );
 }

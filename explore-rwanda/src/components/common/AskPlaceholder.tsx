@@ -16,7 +16,7 @@ export function AskPlaceholder() {
           </h2>
           <p className="t-lead">{t("ask.text")}</p>
         </div>
-        <div className="ask__box">
+        {/* <div className="ask__box">
           <label htmlFor="ask-input" className="visually-hidden">
             {t("ask.title")} ({t("ask.eyebrow")})
           </label>
@@ -26,7 +26,7 @@ export function AskPlaceholder() {
             <li>{t("ask.ex2")}</li>
             <li>{t("ask.ex3")}</li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </section>
   );

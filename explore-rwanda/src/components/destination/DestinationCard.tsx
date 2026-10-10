@@ -3,6 +3,7 @@ import { useI18n } from "../../context/I18nContext";
 import type { Destination } from "../../types";
 import { formatMoney } from "../../utils/format";
 import { startingFrom } from "../../utils/cost";
+import { photoForDestination } from "../../data/photos";
 import { LandscapeImage } from "../common/LandscapeImage";
 import { RatingDisplay } from "../common/RatingDisplay";
 import { SaveButton } from "../common/SaveButton";
@@ -15,7 +16,7 @@ export function DestinationCard({ destination: d }: { destination: Destination }
   return (
     <article className="card dest-card">
       <div className="card__media">
-        <LandscapeImage tone={d.imageTone} src={d.images[0]} alt={`${d.name}, ${t(`region.${d.region}`)}`} />
+        <LandscapeImage tone={d.imageTone} src={photoForDestination(d.id) ?? d.images[0]} alt={`${d.name}, ${t(`region.${d.region}`)}`} />
         <span className="card__region">{t(`region.${d.region}`)}</span>
         <SaveButton type="destination" id={d.id} name={d.name} className="card__save" />
       </div>

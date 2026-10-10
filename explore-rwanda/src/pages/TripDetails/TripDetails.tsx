@@ -12,6 +12,7 @@ import { useI18n } from "../../context/I18nContext";
 import { useAsync } from "../../hooks/useAsync";
 import { useDocumentTitle } from "../../hooks/useDocumentTitle";
 import { destinationService, tripService } from "../../services";
+import { photoForDestination } from "../../data/photos";
 import { formatDate, formatRange } from "../../utils/format";
 import type { Trip } from "../../types";
 
@@ -33,7 +34,7 @@ function Detail({ trip: tr }: { trip: Trip }) {
   return (
     <article className="trip-detail">
       <div className="detail-hero">
-        <LandscapeImage tone={tr.imageTone} alt="" className="detail-hero__img" />
+        <LandscapeImage tone={tr.imageTone} alt="" src={photoForDestination(tr.destinationId)} className="detail-hero__img" />
       </div>
       <div className="container detail">
         <div className="detail__main">

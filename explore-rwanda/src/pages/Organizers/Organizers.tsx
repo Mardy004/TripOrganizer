@@ -7,6 +7,7 @@ import { useAsync } from "../../hooks/useAsync";
 import { useDocumentTitle } from "../../hooks/useDocumentTitle";
 import { organizerService } from "../../services";
 import type { OrganizerType } from "../../types";
+import { organizersPhoto } from "../../data/photos";
 
 type Group = "all" | OrganizerType;
 
@@ -22,7 +23,9 @@ export default function Organizers() {
   ];
   const list = state.data?.filter((o) => group === "all" || o.type === group) ?? [];
   return (
-    <div className="container section">
+    <div className="page-photo" style={{ backgroundImage: `url(${organizersPhoto})` }}>
+      <div className="page-photo__scrim" aria-hidden="true" />
+      <div className="container section page-photo__inner">
       <SectionHeading as="h1" eyebrow={t("org.eyebrow")} title={t("org.title")} description={t("org.subtitle")} />
       <div className="chips" role="group" aria-label={t("org.title")}>
         {tabs.map((x) => (
@@ -49,6 +52,7 @@ export default function Organizers() {
             ))}
           </div>
         ))}
+    </div>
     </div>
   );
 }

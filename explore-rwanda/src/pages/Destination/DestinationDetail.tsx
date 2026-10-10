@@ -10,6 +10,7 @@ import { EntryFee } from "../../components/destination/EntryFee";
 import { PriceEstimate } from "../../components/destination/PriceEstimate";
 import { ReviewSection } from "../../components/review/ReviewSection";
 import { TripCard } from "../../components/trip/TripCard";
+import { photoForDestination, galleryForDestination } from "../../data/photos";
 import { useI18n } from "../../context/I18nContext";
 import { useAsync } from "../../hooks/useAsync";
 import { useDocumentTitle } from "../../hooks/useDocumentTitle";
@@ -43,7 +44,7 @@ function Detail({ d }: { d: Destination }) {
   return (
     <article>
       <div className="detail-hero">
-        <LandscapeImage tone={d.imageTone} alt="" src={d.images[0]} className="detail-hero__img" />
+        <LandscapeImage tone={d.imageTone} alt="" src={photoForDestination(d.id) ?? d.images[0]} className="detail-hero__img" />
       </div>
       <div className="container detail">
         <div className="detail__main">
@@ -56,6 +57,14 @@ function Detail({ d }: { d: Destination }) {
               <SaveButton type="destination" id={d.id} name={d.name} className="save-btn--text" />
             </div>
           </header>
+
+          <div className="detail-gallery" aria-hidden="true">
+            {galleryForDestination(d.id)
+              .slice(1)
+              .map((src, i) => (
+                <img key={i} src={src} alt="" loading="lazy" decoding="async" className="detail-gallery__img" />
+              ))}
+          </div>
 
           <section aria-label={t("dest.about")}>
             <EntryFee fee={d.entryFee} />

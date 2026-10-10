@@ -10,6 +10,7 @@ import { useDocumentTitle } from "../../hooks/useDocumentTitle";
 import { destinationService, tripService } from "../../services";
 import { defaultFilters, filterTrips } from "../../utils/filters";
 import type { Filters } from "../../utils/filters";
+import { tripsPhoto } from "../../data/photos";
 
 export default function Trips() {
   const { t } = useI18n();
@@ -28,7 +29,9 @@ export default function Trips() {
   }, [data.data, q, availableOnly]);
 
   return (
-    <div className="container section">
+    <div className="page-photo" style={{ backgroundImage: `url(${tripsPhoto})` }}>
+      <div className="page-photo__scrim" aria-hidden="true" />
+      <div className="container section page-photo__inner">
       <SectionHeading as="h1" eyebrow={t("trips.eyebrow")} title={t("trips.title")} description={t("trips.subtitle")} />
       <div className="explore__bar">
         <SearchBar id="trips-search" value={q} onChange={setQ} placeholder={t("trips.searchPlaceholder")} />
@@ -68,6 +71,7 @@ export default function Trips() {
             </div>
           </>
         ))}
+    </div>
     </div>
   );
 }

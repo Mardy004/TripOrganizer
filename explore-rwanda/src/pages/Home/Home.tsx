@@ -13,6 +13,7 @@ import { useI18n } from "../../context/I18nContext";
 import { useAsync } from "../../hooks/useAsync";
 import { useDocumentTitle } from "../../hooks/useDocumentTitle";
 import { destinationService, tripService } from "../../services";
+import { heroPhoto } from "../../data/photos";
 import { exampleSearches } from "../../utils/search";
 import type { TranslationKey } from "../../translations";
 
@@ -33,7 +34,8 @@ export default function Home() {
 
   return (
     <>
-      <section className="hero">
+      <section className="hero hero--photo" style={{ backgroundImage: `url(${heroPhoto})` }}>
+        <div className="hero__scrim" aria-hidden="true" />
         <div className="container hero__inner">
           <p className="t-label hero__eyebrow">{t("home.eyebrow")}</p>
           <h1 className="t-display hero__title">{t("brand.tagline")}</h1>
