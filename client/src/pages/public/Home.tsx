@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Assistant } from '../../components/Assistant';
 import { DestinationCard, TripCard } from '../../components/Cards';
@@ -21,8 +21,26 @@ export function SearchSuggest({ value, onChange, id, placeholder }: { value: str
     <datalist id={id + '-l'}>{[...new Set(items)].map((i) => <option key={i} value={i} />)}</datalist></>);
 }
 
+/** Splits a title into per-letter spans for a staggered reveal; words stay unbroken so wrapping still works. */
+function SplitLetters({ text, delay = 0, step = 0.045 }: { text: string; delay?: number; step?: number }) {
+  let i = 0;
+  const words = text.split(' ');
+  return (
+    <span className="split" aria-hidden="true">
+      {words.map((word, w) => (
+        <Fragment key={w}>
+          <span className="split-word">
+            {Array.from(word).map((ch, c) => <span className="split-ch" key={c} style={{ "--d": `${delay + i++ * step}s` } as React.CSSProperties}>{ch}</span>)}
+          </span>
+          {w < words.length - 1 && ' '}
+        </Fragment>
+      ))}
+    </span>
+  );
+}
+
 export default function Home() {
-  const { t } = useI18n(); const nav = useNavigate();
+  const { t, lang } = useI18n(); const nav = useNavigate();
   const [what, setWhat] = useState(''); const [when, setWhen] = useState('any'); const [date, setDate] = useState(''); const [budget, setBudget] = useState('');
   const dests = useLoad(() => api.get<{ items: Destination[] }>('/destinations'), []);
   const cats = useLoad(() => api.get<{ items: Category[] }>('/categories'), []);
@@ -34,9 +52,13 @@ export default function Home() {
       <section className="hero">
         <HeroImage src="/images/hero.jpg" slug="hiking" seed={5} />
         <div className="container hero-in">
-          <h1 className="poster-title"><span className="t-script">{t('poster.hero.top')}</span><span className="t-poster">{t('poster.hero.big')}</span><span className="t-script">{t('poster.hero.bottom')}</span></h1>
-          <p className="lead">{t('home.sub')}</p>
-          <form className="searchbar" onSubmit={go} role="search">
+          <h1 className="poster-title" key={lang}>
+            <span className="t-script ha ha-top">{t('poster.hero.top')}</span>
+            <span className="t-poster"><span className="sr-only">{t('poster.hero.big')}</span><SplitLetters text={t('poster.hero.big')} delay={0.45} /></span>
+            <span className="t-script ha ha-bottom">{t('poster.hero.bottom')}</span>
+          </h1>
+          <p className="lead ha ha-lead">{t('home.sub')}</p>
+          <form className="searchbar ha ha-search" onSubmit={go} role="search">
             <div className="sb-q"><Icon name="search" /><label htmlFor="h-what" className="sr-only">{t('home.search.what')}</label>
               <SearchSuggest id="h-what" value={what} onChange={setWhat} placeholder={t('home.search.q_ph')} /></div>
             <select aria-label={t('home.search.when')} value={when} onChange={(e) => setWhen(e.target.value)}>
@@ -45,12 +67,12 @@ export default function Home() {
             <input className="sb-budget" aria-label={t('home.search.budget')} inputMode="numeric" pattern="[0-9]*" value={budget} onChange={(e) => setBudget(e.target.value.replace(/\D/g, ''))} placeholder={t('home.search.budget_ph')} />
             <button className="btn">{t('c.search')}</button>
           </form>
-          <Link className="btn btn-gold btn-ai" to="/planner"><Robot size={30} small />{t('home.cta_ai')}</Link>
+          <Link className="btn btn-gold btn-ai ha ha-ai" to="/planner"><Robot size={30} small />{t('home.cta_ai')}</Link>
         </div>
       </section>
 
       <div className="container">
-        <div className="card stat-strip overlap">
+        <div className="card stat-strip overlap ha ha-stats">
           <div><span className="ic"><Icon name="pin" size={22} /></span><div><b>{n(dests.data?.items.length)}</b><span>{t('home.stat.dest')}</span></div></div>
           <div><span className="ic gold"><Icon name="calendar" size={22} /></span><div><b>{n(trips.data?.total)}</b><span>{t('home.stat.trips')}</span></div></div>
           <div><span className="ic"><Icon name="mountain" size={22} /></span><div><b>{n(cats.data?.items.length)}</b><span>{t('home.stat.cats')}</span></div></div>

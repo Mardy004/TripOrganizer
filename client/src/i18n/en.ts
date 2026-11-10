@@ -3,7 +3,7 @@ export const en = {
   'brand.name': 'Explore Rwanda', 'brand.tagline': 'Explore more. Go together.',
   'nav.home': 'Home', 'nav.destinations': 'Destinations', 'nav.trips': 'Trips', 'nav.planner': 'Explore Rwanda Assistant',
   'nav.about': 'About', 'nav.contact': 'Contact', 'nav.login': 'Log in', 'nav.register': 'Sign up', 'nav.logout': 'Log out',
-  'nav.dashboard': 'My dashboard', 'nav.menu': 'Menu', 'nav.language': 'Language', 'nav.organizer_apply': 'Become an organizer',
+  'nav.dashboard': 'My dashboard', 'nav.menu': 'Menu', 'theme.label': "Theme", 'theme.system': "Device default", 'theme.light': "Light", 'theme.dark': "Dark", 'theme.switch': "switch theme", 'nav.language': 'Language', 'nav.organizer_apply': 'Become an organizer',
   'nav.skip': 'Skip to content',
   // ---- common
   'c.loading': 'Loading…', 'c.save': 'Save changes', 'c.cancel': 'Cancel', 'c.delete': 'Delete', 'c.edit': 'Edit', 'c.create': 'Create',
@@ -19,7 +19,8 @@ export const en = {
   'c.reload': 'Reload', 'c.mark_read': 'Mark all as read', 'c.rating': 'Rating', 'c.comment': 'Comment', 'c.submit': 'Submit',
   // ---- errors
   'err.generic': 'Something went wrong. Please try again.', 'err.network': 'Cannot reach the server. Check your connection.',
-  'err.invalid_credentials': 'Email or password is incorrect.', 'err.email_taken': 'An account with this email already exists.',
+  'err.invalid_credentials': 'Email or password is incorrect.',
+  'err.invalid_token': 'This reset link is invalid or has expired.', 'err.google_failed': 'Google sign-in failed. Please try again.', 'err.google_not_configured': 'Google sign-in is not available.', 'err.email_taken': 'An account with this email already exists.',
   'err.validation_error': 'Please check the highlighted fields.', 'err.unauthorized': 'Please log in to continue.',
   'err.forbidden': 'You do not have permission to do this.', 'err.not_found': 'We could not find what you were looking for.',
   'err.duplicate_registration': 'You already have an active registration for this trip.', 'err.fully_booked': 'This trip is fully booked.',
@@ -99,6 +100,12 @@ export const en = {
   'auth.login_title': 'Welcome back', 'auth.login_sub': 'Log in to register for trips and manage your account.', 'auth.register_title': 'Create your account',
   'auth.register_sub': 'Free for travelers. We only ask for what we need.', 'auth.full_name': 'Full name', 'auth.no_account': 'No account yet?', 'auth.have_account': 'Already have an account?',
   'auth.pw_hint': 'At least 8 characters, with letters and numbers.', 'auth.login_btn': 'Log in', 'auth.register_btn': 'Create account',
+  'auth.or_email': 'or use your email', 'auth.forgot_link': 'Forgot password?', 'auth.forgot_title': 'Reset your password',
+  'auth.forgot_sub': 'Enter the email you use for Explore Rwanda and we will send you a link to choose a new password.', 'auth.forgot_btn': 'Send reset link',
+  'auth.forgot_sent': 'If an account exists for that email, a reset link is on its way. It is valid for 60 minutes. Check your spam folder too.',
+  'auth.back_to_login': 'Back to log in', 'auth.reset_title': 'Choose a new password', 'auth.reset_sub': 'Pick a password you have not used here before.',
+  'auth.new_password': 'New password', 'auth.confirm_password': 'Confirm new password', 'auth.reset_btn': 'Save new password',
+  'auth.pw_mismatch': 'The two passwords do not match.', 'auth.reset_done': 'Your password has been changed.', 'auth.request_new': 'Request a new link',
   // ---- organizer application
   'app.title': 'Become an organizer', 'app.sub': 'Tell us about your experience. An administrator reviews every application. You can create trips only after approval.',
   'app.org_name': 'Organizer or business name', 'app.applicant': 'Your full name', 'app.experience': 'Your organizing experience and services', 'app.location': 'Based in',

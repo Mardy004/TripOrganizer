@@ -35,5 +35,11 @@ export const env = {
   ollamaModel: process.env.OLLAMA_MODEL || 'llama3.2',
   weatherEnabled: (process.env.WEATHER_ENABLED || 'true') !== 'false',
   googleMapsKey: process.env.GOOGLE_MAPS_API_KEY || '',
+  googleClientId: process.env.GOOGLE_CLIENT_ID || '',
+  smtpHost: process.env.SMTP_HOST || '',
+  smtpPort: Number(process.env.SMTP_PORT || 587),
+  smtpUser: process.env.SMTP_USER || '',
+  smtpPass: process.env.SMTP_PASS || '',
+  mailFrom: process.env.MAIL_FROM || 'Explore Rwanda <no-reply@explore-rwanda.example>',
   clientDist: path.resolve(serverDir, '../client/dist'),
 };

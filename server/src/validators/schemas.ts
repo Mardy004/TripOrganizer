@@ -16,6 +16,9 @@ export const loginSchema = z.object({ email: z.string().trim().email(), password
 export const profileSchema = z.object({
   full_name: str(2, 100), phone: phone.optional().or(z.literal('')), preferred_language: z.enum(['rw', 'en']).optional(),
 });
+export const googleLoginSchema = z.object({ credential: z.string().min(20).max(4096), preferred_language: z.enum(['rw', 'en']).optional() });
+export const forgotPasswordSchema = z.object({ email: z.string().trim().email().max(150) });
+export const resetPasswordSchema = z.object({ token: z.string().regex(/^[a-f0-9]{64}$/, 'invalid_token'), password });
 export const passwordChangeSchema = z.object({ current_password: z.string().min(1), new_password: password });
 
 export const applicationSchema = z.object({

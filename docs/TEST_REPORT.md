@@ -1,8 +1,8 @@
 # Explore Rwanda - Automated Test Report
 
-Generated: 2026-11-07T16:44:16.738Z by `npm test` (server/src/tests). Results below are produced by the test run itself, not written by hand.
+Generated: 2026-11-09T20:08:44.988Z by `npm test` (server/src/tests). Results below are produced by the test run itself, not written by hand.
 
-**Total: 98 | Passed: 98 | Failed: 0**
+**Total: 105 | Passed: 105 | Failed: 0**
 
 | Test ID | Description | Expected result | Actual result | Pass/Fail | Notes |
 |---|---|---|---|---|---|
@@ -99,8 +99,15 @@ Generated: 2026-11-07T16:44:16.738Z by `npm test` (server/src/tests). Results be
 | AI-14 | Kinyarwanda request is understood and answered in Kinyarwanda | hiking, 10000, weekend; message in rw | Matched expected result (all assertions passed) | PASS |  |
 | AI-15 | Follow-up refinement uses previous context ("what about Sunday?") | Keeps hiking+budget, switches to Sunday -> none, with hints | Matched expected result (all assertions passed) | PASS |  |
 | AI-16 | Results are database-grounded: cancelling a trip removes it from recommendations at once | Cheap Sat Hike disappears after cancel | Matched expected result (all assertions passed) | PASS |  |
+| AI-18 | Small talk gets a friendly reply that steers back to trip planning, with live suggestions | "How are you?" -> "I am fine"; thanks/bye/who handled; suggestion chips return real trips | How are you? -> I am fine, thank you for asking! 😊 How can Explore Rwanda help you with your trip? Here are a few ideas: | PASS |  |
+| AI-19 | Open requests for ideas get real recommendations; nonsense gets a friendly fallback | recommend -> open trips only; unknown -> suggestions, no trips | Matched expected result (all assertions passed) | PASS |  |
 | AI-17 | Central search endpoint reuses the same engine (text + filters + suggestions) | /search?q=... returns same intent; suggest returns real titles | Matched expected result (all assertions passed) | PASS |  |
 | AI-18 | Works with no external AI provider configured | engine === rules | Matched expected result (all assertions passed) | PASS |  |
 | NLP-01 | Budget extraction formats | 10k, RWF 10,000, 15 000 frw, "under 20000", "budget of 5k", 12.5k | Matched expected result (all assertions passed) | PASS |  |
 | NLP-02 | People extraction | "for two people", "2 people", "group of 4", "for 10,000" is NOT people | Matched expected result (all assertions passed) | PASS |  |
 | NLP-03 | Date interpretation relative to a fixed Wednesday | weekend=Sat..Sun, next weekend, tomorrow, sunday, next week, ISO date | Matched expected result (all assertions passed) | PASS |  |
+| RESET-01 | Forgot password gives the same answer for known and unknown emails | HTTP 200 ok for both; token stored (hashed) only for the real account | Matched expected result (all assertions passed) | PASS |  |
+| RESET-02 | Valid reset token sets a new password and logs the user in | HTTP 200; new password works, old one fails | Matched expected result (all assertions passed) | PASS |  |
+| RESET-03 | Reset token cannot be reused, and expired or unknown tokens are rejected | HTTP 400 invalid_token | Matched expected result (all assertions passed) | PASS |  |
+| RESET-04 | Reset still enforces the password strength rule | HTTP 400 validation_error | Matched expected result (all assertions passed) | PASS |  |
+| GOOGLE-01 | Google sign-in is off when no client ID is configured | providers.google=null; /auth/google returns 400 google_not_configured | Matched expected result (all assertions passed) | PASS |  |

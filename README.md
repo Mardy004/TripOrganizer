@@ -31,7 +31,7 @@ Open http://localhost:5173. Single-process mode (as used for the demo): `npm run
 Individually: `npm run dev:server`, `npm run dev:client`. Reset everything: `npm run db:reset`, then init and seed again.
 
 ## 5. Configuration (`.env`)
-See `.env.example`. Secrets are only read from environment variables. `JWT_SECRET` is required in production. No default credentials are shipped: the admin is created from `ADMIN_EMAIL`/`ADMIN_PASSWORD` (min 10 characters); the seed uses `DEMO_PASSWORD` or generates a random one and prints it once. Optional: `OLLAMA_URL` (local model rephrases the assistant's intro sentence only), `WEATHER_ENABLED`.
+See `.env.example`. Secrets are only read from environment variables. `JWT_SECRET` is required in production. No default credentials are shipped: the admin is created from `ADMIN_EMAIL`/`ADMIN_PASSWORD` (min 10 characters); the seed uses `DEMO_PASSWORD` or generates a random one and prints it once. Optional: `OLLAMA_URL` (local model rephrases the assistant's intro sentence only), `WEATHER_ENABLED`, `GOOGLE_CLIENT_ID` (enables "Continue with Google" on log in / sign up; add your site under *Authorized JavaScript origins* in Google Cloud Console), and `SMTP_HOST`/`SMTP_PORT`/`SMTP_USER`/`SMTP_PASS`/`MAIL_FROM` for password-reset emails (without SMTP, reset links are printed to the server console). Reset links point to `CLIENT_ORIGIN` and expire after 60 minutes.
 
 ## 6. Demonstration script
 1. Visitor: home, ask the planner "Mfite RWF 10,000 muri weekend. Nakwiga he gutembera ku musozi?", open a trip.
