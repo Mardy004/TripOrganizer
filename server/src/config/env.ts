@@ -38,14 +38,6 @@ export const env = {
   ollamaModel: process.env.OLLAMA_MODEL || 'llama3.2',
   weatherEnabled: (process.env.WEATHER_ENABLED || 'true') !== 'false',
   googleMapsKey: process.env.GOOGLE_MAPS_API_KEY || '',
-<<<<<<< HEAD
-  googleClientId: process.env.GOOGLE_CLIENT_ID || '',
-  smtpHost: process.env.SMTP_HOST || '',
-  smtpPort: Number(process.env.SMTP_PORT || 587),
-  smtpUser: process.env.SMTP_USER || '',
-  smtpPass: process.env.SMTP_PASS || '',
-  mailFrom: process.env.MAIL_FROM || 'Explore Rwanda <no-reply@explore-rwanda.example>',
-=======
   // ---- Hosting on Vercel ----
   /** Hosted database (Turso). Empty = local SQLite file at DATABASE_PATH. */
   tursoUrl: process.env.TURSO_DATABASE_URL || '',
@@ -55,6 +47,5 @@ export const env = {
   /** Vercel sets CRON_SECRET and sends it as a Bearer token to cron endpoints. */
   cronSecret: process.env.CRON_SECRET || '',
   onVercel: !!process.env.VERCEL,
->>>>>>> ee2bdfffcb97c84952255d5204adb07826d96989
   clientDist: path.resolve(serverDir, '../client/dist'),
 };
