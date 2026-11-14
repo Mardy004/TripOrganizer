@@ -1,8 +1,8 @@
 # Explore Rwanda - Automated Test Report
 
-Generated: 2026-11-10T14:51:54.936Z by `npm test` (server/src/tests). Results below are produced by the test run itself, not written by hand.
+Generated: 2026-11-14T17:30:32.363Z by `npm test` (server/src/tests). Results below are produced by the test run itself, not written by hand.
 
-**Total: 111 | Passed: 111 | Failed: 0**
+**Total: 112 | Passed: 111 | Failed: 1**
 
 | Test ID | Description | Expected result | Actual result | Pass/Fail | Notes |
 |---|---|---|---|---|---|
@@ -103,8 +103,6 @@ Generated: 2026-11-10T14:51:54.936Z by `npm test` (server/src/tests). Results be
 | AI-16 | Results are database-grounded: cancelling a trip removes it from recommendations at once | Cheap Sat Hike disappears after cancel | Matched expected result (all assertions passed) | PASS |  |
 | AI-18 | Small talk gets a friendly reply that steers back to trip planning, with live suggestions | "How are you?" -> "I am fine"; thanks/bye/who handled; suggestion chips return real trips | How are you? -> I am fine, thank you for asking! 😊 How can Explore Rwanda help you with your trip? Here are a few ideas: | PASS |  |
 | AI-19 | Open requests for ideas get real recommendations; nonsense gets a friendly fallback | recommend -> open trips only; unknown -> suggestions, no trips | Matched expected result (all assertions passed) | PASS |  |
-<<<<<<< HEAD
-=======
 | AI-20 | Regression: available trip with an unknown cost is NOT reported as no match; short follow-ups keep the search | Bigogwe -> UNCONFIRMED; "Musanze" -> destination/origin question; "Destination" keeps activity/budget/date; "Under 5k" updates only the budget | MATCHED_AVAILABLE_AFFORDABILITY_UNCONFIRMED -> clarification -> MATCHED_AVAILABLE_AFFORDABILITY_UNCONFIRMED -> MATCHED_ABOVE_BUDGET | PASS |  |
 | AI-21 | Result states come from the database: full, registration closed, other date, confirmed vs unconfirmed, genuine no match | Each query returns its own state; unbookable trips are never listed as recommendations | Matched expected result (all assertions passed) | PASS |  |
 | AI-22 | Short follow-ups and quick replies update the active search | "Three people", "With transport", "This weekend", thanks, "Change starting location" + "Kigali"; a complete new request starts fresh | Matched expected result (all assertions passed) | PASS |  |
@@ -112,19 +110,11 @@ Generated: 2026-11-10T14:51:54.936Z by `npm test` (server/src/tests). Results be
 | AI-24 | A month ("in <month>") filters by date; with nothing that month, the closest dates are offered clearly | All results fall in the month, or the reply says none run then and proposes other dates | Matched expected result (all assertions passed) | PASS |  |
 | AI-25 | Transport not in the trip price: the assistant adds public transport from where the traveller starts | Fare table from Musanze (cheaper) vs Kigali; no origin = trip start, assumed; "I'm in Musanze" sets the origin; organizer transport from far away is replaced | Musanze 2000, Kigali 6000, Rubavu ≈1200 (24 km) | PASS |  |
 | AI-26 | Places on the map: "near <town>" finds destinations close to it | "hiking near Musanze" returns trips at Test Bigogwe with a distance reason | Matched expected result (all assertions passed) | PASS |  |
->>>>>>> ee2bdfffcb97c84952255d5204adb07826d96989
 | AI-17 | Central search endpoint reuses the same engine (text + filters + suggestions) | /search?q=... returns same intent; suggest returns real titles | Matched expected result (all assertions passed) | PASS |  |
 | AI-18 | Works with no external AI provider configured | engine === rules | Matched expected result (all assertions passed) | PASS |  |
 | NLP-01 | Budget extraction formats | 10k, RWF 10,000, 15 000 frw, "under 20000", "budget of 5k", 12.5k | Matched expected result (all assertions passed) | PASS |  |
 | NLP-02 | People extraction | "for two people", "2 people", "group of 4", "for 10,000" is NOT people | Matched expected result (all assertions passed) | PASS |  |
 | NLP-03 | Date interpretation relative to a fixed Wednesday | weekend=Sat..Sun, next weekend, tomorrow, sunday, next week, ISO date | Matched expected result (all assertions passed) | PASS |  |
-<<<<<<< HEAD
-| RESET-01 | Forgot password gives the same answer for known and unknown emails | HTTP 200 ok for both; token stored (hashed) only for the real account | Matched expected result (all assertions passed) | PASS |  |
-| RESET-02 | Valid reset token sets a new password and logs the user in | HTTP 200; new password works, old one fails | Matched expected result (all assertions passed) | PASS |  |
-| RESET-03 | Reset token cannot be reused, and expired or unknown tokens are rejected | HTTP 400 invalid_token | Matched expected result (all assertions passed) | PASS |  |
-| RESET-04 | Reset still enforces the password strength rule | HTTP 400 validation_error | Matched expected result (all assertions passed) | PASS |  |
-| GOOGLE-01 | Google sign-in is off when no client ID is configured | providers.google=null; /auth/google returns 400 google_not_configured | Matched expected result (all assertions passed) | PASS |  |
-=======
 | GEO-01 | Built-in map of Rwanda | Old names resolve; Musanze is closer to Bigogwe than Kigali; fares grow with distance; "I'm in X" / "ndi i X" set the starting location | Matched expected result (all assertions passed) | PASS |  |
 | NLP-04 | Month interpretation | "in december", "next month", "this month", "mu Kuboza", past month = next year, "may I" is not a month | Matched expected result (all assertions passed) | PASS |  |
->>>>>>> ee2bdfffcb97c84952255d5204adb07826d96989
+| RESET-01 | Forgot password gives the same answer for known and unknown emails | HTTP 200 ok for both; token stored (hashed) only for the real account | Expected values to be strictly equal:  404 !== 200  | FAIL |  |

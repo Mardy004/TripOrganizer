@@ -49,7 +49,8 @@ export default function Home() {
   const cats = useLoad(() => api.get<{ items: Category[] }>('/categories'), []);
   const trips = useLoad(() => api.get<{ items: Trip[] }>('/search?all=1&sort=date&lang=rw').then((r: any) => { const open = (r.trips as Trip[]).filter((x) => x.is_open); return { items: open.slice(0, 6), total: open.length }; }), []);
   const go = (e: React.FormEvent) => { e.preventDefault(); nav('/trips' + qs({ q: what, max_price: budget, weekend: when === 'weekend' ? 1 : undefined, date: when === 'date' ? date : undefined })); };
-  const n = (v?: number) => (v == null ? '–' : String(v));
+  // Round down to the nearest 5 and show "+" (e.g. 8 → "5+", 14 → "10+"); exact multiples stay as-is.
+  const n = (v?: number) => (v == null ? '–' : v < 5 || v % 5 === 0 ? String(v) : <>{Math.floor(v / 5) * 5}<i className="plus">+</i></>);
   return (
     <>
       <section className="hero">

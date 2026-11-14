@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { Assistant } from '../../components/Assistant';
 import { TripCard } from '../../components/Cards';
 import { HeroImage } from '../../components/Cover';
-import { Field, Loader } from '../../components/ui';
+import { Field, Loader, PasswordInput } from '../../components/ui';
 import { GoogleButton } from '../../components/GoogleButton';
 import { homeFor, useAuth } from '../../contexts/AuthContext';
 import { useToast } from '../../contexts/Toast';
@@ -86,7 +86,7 @@ export function Login() {
     <GoogleButton mode="signin" onCredential={google} />
     <form className="stack" onSubmit={submit}>
       <Field label={t('c.email')}><input type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} required /></Field>
-      <Field label={t('c.password')}><input type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} required /></Field>
+      <Field label={t('c.password')}><PasswordInput autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} required /></Field>
       <div className="auth-row"><Link to="/forgot-password">{t('auth.forgot_link')}</Link></div>
       <button className="btn btn-block" disabled={busy}>{t('auth.login_btn')}</button>
     </form>
@@ -110,7 +110,7 @@ export function Register() {
       <Field label={t('auth.full_name')} error={err.full_name}><input autoComplete="name" value={f.full_name} onChange={set('full_name')} required /></Field>
       <Field label={t('c.email')} error={err.email}><input type="email" autoComplete="email" value={f.email} onChange={set('email')} required /></Field>
       <Field label={`${t('c.phone')} (${t('c.optional')})`} error={err.phone}><input type="tel" autoComplete="tel" value={f.phone} onChange={set('phone')} /></Field>
-      <Field label={t('c.password')} error={err.password} hint={t('auth.pw_hint')}><input type="password" autoComplete="new-password" value={f.password} onChange={set('password')} required minLength={8} /></Field>
+      <Field label={t('c.password')} error={err.password} hint={t('auth.pw_hint')}><PasswordInput autoComplete="new-password" value={f.password} onChange={set('password')} required minLength={8} /></Field>
       <button className="btn btn-block" disabled={busy}>{t('auth.register_btn')}</button>
     </form>
     <p style={{ marginTop: 16 }}>{t('auth.have_account')} <Link to="/login">{t('nav.login')}</Link></p></AuthFrame>);
@@ -155,8 +155,8 @@ export function ResetPassword() {
     {!token ? <div className="notice notice-red" role="alert">{t('err.invalid_token')}</div> : (
       <form className="stack" onSubmit={submit}>
         {err && <div className="notice notice-red" role="alert">{err} <Link to="/forgot-password">{t('auth.request_new')}</Link></div>}
-        <Field label={t('auth.new_password')} hint={t('auth.pw_hint')} error={fieldErr}><input type="password" autoComplete="new-password" value={pw} onChange={(e) => setPw(e.target.value)} required minLength={8} autoFocus /></Field>
-        <Field label={t('auth.confirm_password')}><input type="password" autoComplete="new-password" value={pw2} onChange={(e) => setPw2(e.target.value)} required minLength={8} /></Field>
+        <Field label={t('auth.new_password')} hint={t('auth.pw_hint')} error={fieldErr}><PasswordInput autoComplete="new-password" value={pw} onChange={(e) => setPw(e.target.value)} required minLength={8} autoFocus /></Field>
+        <Field label={t('auth.confirm_password')}><PasswordInput autoComplete="new-password" value={pw2} onChange={(e) => setPw2(e.target.value)} required minLength={8} /></Field>
         <button className="btn btn-block" disabled={busy}>{t('auth.reset_btn')}</button>
       </form>)}
     <p style={{ marginTop: 16 }}><Link to="/login">{t('auth.back_to_login')}</Link></p></AuthFrame>);
@@ -185,7 +185,7 @@ export function BecomeOrganizer() {
             <Field label={t('c.email')} error={err.email}><input type="email" value={f.email} onChange={set('email')} required readOnly={!!user} /></Field>
             <Field label={t('c.phone')} error={err.phone}><input type="tel" value={f.phone} onChange={set('phone')} required /></Field>
             <Field label={t('app.location')} error={err.location}><input value={f.location} onChange={set('location')} required /></Field>
-            {!user && <Field label={t('app.new_account')} error={err.password} hint={t('auth.pw_hint')}><input type="password" value={f.password} onChange={set('password')} required minLength={8} /></Field>}
+            {!user && <Field label={t('app.new_account')} error={err.password} hint={t('auth.pw_hint')}><PasswordInput value={f.password} onChange={set('password')} required minLength={8} /></Field>}
             <Field className="span2" label={t('app.experience')} error={err.experience}><textarea value={f.experience} onChange={set('experience')} required minLength={20} /></Field>
             <Field className="span2" label={`${t('app.support')} (${t('c.optional')})`} error={err.supporting_info}><textarea value={f.supporting_info} onChange={set('supporting_info')} /></Field>
             <div className="span2"><button className="btn btn-gold">{t('app.submit')}</button></div>

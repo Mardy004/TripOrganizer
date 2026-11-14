@@ -28,8 +28,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     if (el.dataset.theme === theme) return;
     // brief cross-fade only when the theme actually changes (never on first paint)
     el.classList.add('theme-anim'); el.dataset.theme = theme;
-    const h = window.setTimeout(() => el.classList.remove('theme-anim'), 450);
-    return () => window.clearTimeout(h);
+    const done = () => el.classList.remove('theme-anim');
+    const h = window.setTimeout(done, 450);
+    // also drop the class on cleanup so it can't get stuck (e.g. StrictMode re-running the effect)
+    return () => { window.clearTimeout(h); done(); };
   }, [theme]);
 
   const setPref = useCallback((p: ThemePref) => {

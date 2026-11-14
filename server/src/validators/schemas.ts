@@ -62,6 +62,7 @@ export const supportSchema = z.object({
 });
 export const destinationSchema = z.object({
   name: str(2, 120), region: str(2, 120), description_rw: str(5, 3000), description_en: str(5, 3000),
+  info_rw: z.string().trim().max(3000).nullable().optional(), info_en: z.string().trim().max(3000).nullable().optional(),
   latitude: z.coerce.number().min(-90).max(90).nullable().optional(),
   longitude: z.coerce.number().min(-180).max(180).nullable().optional(),
   is_published: z.boolean().default(true), category_ids: z.array(z.coerce.number().int()).default([]),

@@ -81,10 +81,21 @@ CREATE TABLE IF NOT EXISTS destinations (
   latitude REAL,
   longitude REAL,
   image_path TEXT,
+  info_rw TEXT,
+  info_en TEXT,
   is_published INTEGER NOT NULL DEFAULT 1 CHECK (is_published IN (0,1)),
   is_demo INTEGER NOT NULL DEFAULT 0,
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+-- Extra photos shown in a destination's gallery (the main photo stays in destinations.image_path)
+CREATE TABLE IF NOT EXISTS destination_images (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  destination_id INTEGER NOT NULL REFERENCES destinations(id) ON DELETE CASCADE,
+  path TEXT NOT NULL,
+  caption TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
 CREATE TABLE IF NOT EXISTS destination_categories (

@@ -86,7 +86,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="container">
         <div className="footer-grid">
-          <div><Brand light /><p style={{ marginTop: 12 }}>{t('brand.tagline')}</p><p className="small">{t('footer.demo')}</p></div>
+          <div><Brand light /><p style={{ marginTop: 12 }}>{t('brand.tagline')}</p></div>
           <div><h4>{t('footer.explore')}</h4><ul><li><Link to="/destinations">{t('nav.destinations')}</Link></li><li><Link to="/trips">{t('nav.trips')}</Link></li><li><Link to="/planner">{t('nav.planner')}</Link></li></ul></div>
           <div><h4>{t('footer.platform')}</h4><ul><li><Link to="/about">{t('nav.about')}</Link></li><li><Link to="/contact">{t('nav.contact')}</Link></li><li><Link to="/become-organizer">{t('nav.organizer_apply')}</Link></li></ul></div>
         </div>
