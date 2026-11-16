@@ -7,6 +7,10 @@ import type { AddressInfo } from 'node:net';
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'er-test-'));
 process.env.DATABASE_PATH = path.join(tmp, 'test.db');
 process.env.UPLOAD_DIR = path.join(tmp, 'uploads');
+// Never touch hosted services from tests, even if .env points at them (dotenv does not override keys already set).
+process.env.TURSO_DATABASE_URL = '';
+process.env.TURSO_AUTH_TOKEN = '';
+process.env.BLOB_READ_WRITE_TOKEN = '';
 process.env.ADMIN_EMAIL = 'admin@test.local';
 process.env.ADMIN_PASSWORD = 'TestAdminPass123';
 process.env.JWT_SECRET = 'test-secret-test-secret-test-secret-test-secret';
