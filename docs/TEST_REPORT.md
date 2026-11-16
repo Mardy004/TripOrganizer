@@ -1,8 +1,8 @@
 # Explore Rwanda - Automated Test Report
 
-Generated: 2026-11-14T17:30:32.363Z by `npm test` (server/src/tests). Results below are produced by the test run itself, not written by hand.
+Generated: 2026-11-16T09:55:25.589Z by `npm test` (server/src/tests). Results below are produced by the test run itself, not written by hand.
 
-**Total: 112 | Passed: 111 | Failed: 1**
+**Total: 116 | Passed: 116 | Failed: 0**
 
 | Test ID | Description | Expected result | Actual result | Pass/Fail | Notes |
 |---|---|---|---|---|---|
@@ -117,4 +117,8 @@ Generated: 2026-11-14T17:30:32.363Z by `npm test` (server/src/tests). Results be
 | NLP-03 | Date interpretation relative to a fixed Wednesday | weekend=Sat..Sun, next weekend, tomorrow, sunday, next week, ISO date | Matched expected result (all assertions passed) | PASS |  |
 | GEO-01 | Built-in map of Rwanda | Old names resolve; Musanze is closer to Bigogwe than Kigali; fares grow with distance; "I'm in X" / "ndi i X" set the starting location | Matched expected result (all assertions passed) | PASS |  |
 | NLP-04 | Month interpretation | "in december", "next month", "this month", "mu Kuboza", past month = next year, "may I" is not a month | Matched expected result (all assertions passed) | PASS |  |
-| RESET-01 | Forgot password gives the same answer for known and unknown emails | HTTP 200 ok for both; token stored (hashed) only for the real account | Expected values to be strictly equal:  404 !== 200  | FAIL |  |
+| RESET-01 | Forgot password gives the same answer for known and unknown emails | HTTP 200 ok for both; token stored (hashed) only for the real account | Matched expected result (all assertions passed) | PASS |  |
+| RESET-02 | Valid reset token sets a new password and logs the user in | HTTP 200; new password works, old one fails | Matched expected result (all assertions passed) | PASS |  |
+| RESET-03 | Reset token cannot be reused, and expired or unknown tokens are rejected | HTTP 400 invalid_token | Matched expected result (all assertions passed) | PASS |  |
+| RESET-04 | Reset still enforces the password strength rule | HTTP 400 validation_error | Matched expected result (all assertions passed) | PASS |  |
+| GOOGLE-01 | Google sign-in is off when no client ID is configured | providers.google=null; /auth/google returns 400 google_not_configured | Matched expected result (all assertions passed) | PASS |  |
